@@ -4,7 +4,7 @@ class Numerals
     one two three four five
     six seven eight nine ten 
     eleven twelve thirteen fourteen fifteen 
-    sixteen seventeen eightteen nineteen
+    sixteen seventeen eighteen nineteen
   }
 
   @@tens = %w{
@@ -23,6 +23,10 @@ class Numerals
       unless remainder.zero?
         result += '-' + say(remainder)
       end
+    when number == 1000
+      result = 'one thousand'
+    when number >= 100 && number < 2000
+      result = say(number / 100) + ' hundred'
     end
     result
   end

@@ -7,7 +7,7 @@ class NumeralsTest < Minitest::Test
       one two three four five
       six seven eight nine ten 
       eleven twelve thirteen fourteen fifteen 
-      sixteen seventeen eightteen nineteen
+      sixteen seventeen eighteen nineteen
     }
 
     1.upto(19) do |i|
@@ -28,6 +28,18 @@ class NumeralsTest < Minitest::Test
     numbers_said = {
       21 => 'twenty-one', 29 => 'twenty-nine', 42 => 'forty-two',
       55 => 'fifty-five', 91 => 'ninety-one', 99 => 'ninety-nine'
+    }
+
+    test_all_in_hash(numbers_said)
+  end
+
+  def test_100_to_1900
+    numbers_said = {
+      100 => 'one hundred', 200 => 'two hundred', 300 => 'three hundred',
+      900 => 'nine hundred', 1000 => 'one thousand', 1100 => 'eleven hundred',
+      1200 => 'twelve hundred', 1300 => 'thirteen hundred', 1400 => 'fourteen hundred',
+      1500 => 'fifteen hundred', 1600 => 'sixteen hundred', 1700 => 'seventeen hundred',
+      1800 => 'eighteen hundred', 1900 => 'nineteen hundred'
     }
 
     test_all_in_hash(numbers_said)
