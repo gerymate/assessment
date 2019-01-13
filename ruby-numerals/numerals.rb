@@ -23,10 +23,13 @@ class Numerals
       unless remainder.zero?
         result += '-' + say(remainder)
       end
-    when number == 1000
-      result = 'one thousand'
     when number >= 100 && number < 2000
       result = say(number / 100) + ' hundred'
+      result = 'one thousand' if (number / 100 == 10)
+      remainder = number.modulo(100)
+      unless remainder.zero?
+        result += ' and ' + say(remainder)
+      end
     end
     result
   end
