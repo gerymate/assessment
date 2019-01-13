@@ -7,8 +7,17 @@ class Numerals
     sixteen seventeen eightteen nineteen twenty
   }
 
+  @@tens = %w{
+    ten twenty thirty fourty fifty sixty seventy eighty ninety
+  }
+
 
   def self.say(number)
-    @@small_numbers[number - 1]
+    case
+    when (1..20).include?(number)
+      @@small_numbers[number - 1]
+    when (20..90).include?(number)
+      @@tens[number / 10 - 1]
+    end  
   end
 end

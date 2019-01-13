@@ -15,4 +15,14 @@ class NumeralsTest < Minitest::Test
     end    
   end
 
+  def test_10_to_90_by_10
+    numbers_said = {
+      10 => 'ten', 20 => 'twenty', 30 => 'thirty', 40 => 'fourty', 50 => 'fifty',
+      60 => 'sixty', 70 => 'seventy', 80 => 'eighty', 90 => 'ninety'
+    }
+
+    numbers_said.each do |value, said|    
+      assert_equal said, Numerals.say(value)      
+    end    
+  end
 end
