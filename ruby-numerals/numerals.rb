@@ -4,20 +4,26 @@ class Numerals
     one two three four five
     six seven eight nine ten 
     eleven twelve thirteen fourteen fifteen 
-    sixteen seventeen eightteen nineteen twenty
+    sixteen seventeen eightteen nineteen
   }
 
   @@tens = %w{
-    ten twenty thirty fourty fifty sixty seventy eighty ninety
+    ten twenty thirty forty fifty sixty seventy eighty ninety
   }
 
 
   def self.say(number)
+    result = ''
     case
-    when (1..20).include?(number)
-      @@small_numbers[number - 1]
-    when (20..90).include?(number)
-      @@tens[number / 10 - 1]
-    end  
+    when (1..19).include?(number)
+      result = @@small_numbers[number - 1]
+    when (20..99).include?(number)
+      result = @@tens[(number / 10) - 1]
+      remainder = number.modulo(10)
+      unless remainder.zero?
+        result += '-' + say(remainder)
+      end
+    end
+    result
   end
 end
