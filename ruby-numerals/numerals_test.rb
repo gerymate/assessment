@@ -92,6 +92,33 @@ class NumeralsTest < Minitest::Test
     test_all_in_hash(numbers_said)
   end
 
+  def test_million_to_billion_by_million
+    numbers_said = {
+      1_000_000 => 'one million', 2_000_000 => 'two million', 
+      10_000_000 => 'ten million', 11_000_000 => 'eleven million',
+      57_000_000 => 'fifty-seven million', 100_000_000 => 'one hundred million', 
+      101_000_000 => 'one hundred one million',
+      112_000_000 => 'one hundred twelve million',
+      903_000_000 => 'nine hundred three million',
+      999_000_000 => 'nine hundred ninety-nine million'
+    }
+    test_all_in_hash(numbers_said)
+  end
+
+  def test_numbers_between_million_and_billion
+    numbers_said = {
+      1_000_012 => 'one million and twelve',
+      2_000_060 => 'two million and sixty', 
+      5_000_500 => 'five million five hundred',
+      5_051_099 => 'five million fifty-one thousand and ninety-nine',
+      57_100_000 => 'fifty-seven million one hundred thousand',
+      100_021_000 => 'one hundred million twenty-one thousand', 
+      101_021_006 => 'one hundred one million twenty-one thousand and six',
+      153_021_506 => 'one hundred fifty-three million twenty-one thousand five hundred and six',
+      999_000_999 => 'nine hundred ninety-nine million nine hundred and ninety-nine'
+    }
+    test_all_in_hash(numbers_said)
+  end
 
   private def test_all_in_hash(the_hash)
     the_hash.each do |value, said|    

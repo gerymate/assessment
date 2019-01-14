@@ -37,6 +37,13 @@ class Numerals
         result += ' and' if remainder < 100
         result += ' ' + say(remainder)
       end
+    when 1_000_000 <= number && number < 1_000_000_000
+      result = say(number / 1_000_000, informal: false) + ' million'
+      remainder = number.modulo(1_000_000)
+      unless remainder.zero?
+        result += ' and' if remainder < 100
+        result += ' ' + say(remainder)
+      end
     end
     result
   end
