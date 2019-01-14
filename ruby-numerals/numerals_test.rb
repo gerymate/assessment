@@ -137,6 +137,14 @@ class NumeralsTest < Minitest::Test
     test_all_in_hash(numbers_said)
   end
 
+  def test_negative_numbers
+    numbers_said = {
+      -1 => 'negative one', -10 => 'negative ten',
+      -1_000_100 => 'negative one million one hundred'
+    }
+    test_all_in_hash(numbers_said)
+  end
+
   private def test_all_in_hash(the_hash)
     the_hash.each do |value, said|    
       assert_equal said, Numerals.say(value)      

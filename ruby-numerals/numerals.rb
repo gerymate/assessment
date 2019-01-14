@@ -41,6 +41,8 @@ class Numerals
   def self.say(number, informal: true)
     return unless number.is_a?(Numeric)
     case
+    when number < 0
+      result = 'negative ' + say(-number)
     when number < 20
       result = @@small_numbers[number]
     when 20 <= number && number < 100
