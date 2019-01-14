@@ -11,6 +11,32 @@ class Numerals
     ten twenty thirty forty fifty sixty seventy eighty ninety
   }
 
+  @@magnitudes = {
+    [1_000, 1_000_000] => 'thousand',
+    [1_000_000, 1_000_000_000] => 'million',
+    # we are using the American system for now, 
+    # but choosing between this and the British system would be a nice option
+    [1_000_000_000, 1_000_000_000_000] => 'billion',
+    [1_000_000_000_000, 1_000_000_000_000_000] => 'trillion',
+    [1_000_000_000_000_000, 1_000_000_000_000_000_000] => 'quadrillion'
+    # to be continued...
+  }
+
+  def self.say_large(number)
+    magnitude = @@magnitudes.keys.find do |lower, upper| 
+      lower <= number && number < upper
+    end
+    return 'around the number of grains of sand in the Sahara' if magnitude.nil?
+    divisor, limit = *magnitude
+    magnitude_name = @@magnitudes[magnitude] 
+    result = say(number / divisor, informal: false) + " #{magnitude_name}"
+    remainder = number.modulo(divisor)
+    unless remainder.zero?
+      result += ' and' if remainder < 100
+      result += ' ' + say(remainder)
+    end
+    result
+  end
 
   def self.say(number, informal: true)
     case
@@ -30,20 +56,8 @@ class Numerals
         result += ' and' if informal
         result += ' ' + say(remainder)
       end
-    when 2000 <= number && number < 1_000_000
-      result = say(number / 1000, informal: false) + ' thousand'
-      remainder = number.modulo(1000)
-      unless remainder.zero?
-        result += ' and' if remainder < 100
-        result += ' ' + say(remainder)
-      end
-    when 1_000_000 <= number && number < 1_000_000_000
-      result = say(number / 1_000_000, informal: false) + ' million'
-      remainder = number.modulo(1_000_000)
-      unless remainder.zero?
-        result += ' and' if remainder < 100
-        result += ' ' + say(remainder)
-      end
+    when number.is_a?(Numeric)
+      result = say_large(number)
     end
     result
   end

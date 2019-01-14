@@ -120,6 +120,23 @@ class NumeralsTest < Minitest::Test
     test_all_in_hash(numbers_said)
   end
 
+  def test_very_large_numbers
+    numbers_said = {
+      1_000_000_000 => 'one billion',
+      50_000_000_000 => 'fifty billion', 
+      2_000_000_000_000 => 'two trillion', 
+      600_000_000_000_000 => 'six hundred trillion',
+      11_000_000_000_000_000 => 'eleven quadrillion',
+      1_020_000_003 => 'one billion twenty million and three',
+      50_000_500_020 => 'fifty billion five hundred thousand and twenty', 
+      2_003_004_001_500 => 'two trillion three billion four million fifteen hundred', 
+      888_000_000_000_000 => 'eight hundred eighty-eight trillion',
+      11_000_000_000_000_011 => 'eleven quadrillion and eleven',
+      1_00000_00000_00000_00000_000 => 'around the number of grains of sand in the Sahara'
+    }
+    test_all_in_hash(numbers_said)
+  end
+
   private def test_all_in_hash(the_hash)
     the_hash.each do |value, said|    
       assert_equal said, Numerals.say(value)      
