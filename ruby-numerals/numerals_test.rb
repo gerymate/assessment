@@ -2,15 +2,15 @@ require 'minitest/autorun'
 require_relative 'numerals'
 
 class NumeralsTest < Minitest::Test
-  def test_1_to_19
+  def test_0_to_19
     numbers_said = %w{
-      one two three four five
+      zero one two three four five
       six seven eight nine ten 
       eleven twelve thirteen fourteen fifteen 
       sixteen seventeen eighteen nineteen
     }
-    1.upto(19) do |i|
-      assert_equal numbers_said[i - 1], Numerals.say(i)      
+    0.upto(19) do |i|
+      assert_equal numbers_said[i], Numerals.say(i)      
     end    
   end
 

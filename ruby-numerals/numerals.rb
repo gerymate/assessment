@@ -1,7 +1,7 @@
 class Numerals
 
   @@small_numbers = %w{
-    one two three four five
+    zero one two three four five
     six seven eight nine ten 
     eleven twelve thirteen fourteen fifteen 
     sixteen seventeen eighteen nineteen
@@ -39,9 +39,10 @@ class Numerals
   end
 
   def self.say(number, informal: true)
+    return unless number.is_a?(Numeric)
     case
     when number < 20
-      result = @@small_numbers[number - 1]
+      result = @@small_numbers[number]
     when 20 <= number && number < 100
       result = @@tens[(number / 10) - 1]
       remainder = number.modulo(10)
@@ -56,7 +57,7 @@ class Numerals
         result += ' and' if informal
         result += ' ' + say(remainder)
       end
-    when number.is_a?(Numeric)
+    else
       result = say_large(number)
     end
     result
