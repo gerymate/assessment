@@ -12,23 +12,30 @@ class Numerals
   }
 
 
-  def self.say(number)
-    result = ''
+  def self.say(number, informal: true)
     case
-    when (1..19).include?(number)
+    when number < 20
       result = @@small_numbers[number - 1]
-    when (20..99).include?(number)
+    when 20 <= number && number < 100
       result = @@tens[(number / 10) - 1]
       remainder = number.modulo(10)
       unless remainder.zero?
         result += '-' + say(remainder)
       end
-    when number >= 100 && number < 2000
+    when 100 <= number && number < 2000
       result = say(number / 100) + ' hundred'
       result = 'one thousand' if (number / 100 == 10)
       remainder = number.modulo(100)
       unless remainder.zero?
-        result += ' and ' + say(remainder)
+        result += ' and' if informal
+        result += ' ' + say(remainder)
+      end
+    when 2000 <= number && number < 1_000_000
+      result = say(number / 1000, informal: false) + ' thousand'
+      remainder = number.modulo(1000)
+      unless remainder.zero?
+        result += ' and' if remainder < 100
+        result += ' ' + say(remainder)
       end
     end
     result

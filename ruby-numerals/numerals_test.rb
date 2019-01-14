@@ -61,7 +61,6 @@ class NumeralsTest < Minitest::Test
   end
 
   def test_1000_to_990000_by_1000
-    skip
     numbers_said = {
       1000 => 'one thousand', 2000 => 'two thousand', 10000 => 'ten thousand',
       11000 => 'eleven thousand', 12000 => 'twelve thousand', 
@@ -77,7 +76,6 @@ class NumeralsTest < Minitest::Test
   end
 
   def test_between_2000_and_999999
-    skip
     numbers_said = {
       2001 => 'two thousand and one', 2010 => 'two thousand and ten',
       2099 => 'two thousand and ninety-nine',
