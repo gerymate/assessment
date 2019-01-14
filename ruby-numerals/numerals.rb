@@ -27,9 +27,9 @@ class Numerals
       lower <= number && number < upper
     end
     return 'around the number of grains of sand in the Sahara' if magnitude.nil?
-    divisor, limit = *magnitude
+    divisor = magnitude.first
     magnitude_name = @@magnitudes[magnitude] 
-    result = say(number / divisor, informal: false) + " #{magnitude_name}"
+    result = say(number / divisor, informal: false) + ' ' + magnitude_name
     remainder = number.modulo(divisor)
     unless remainder.zero?
       result += ' and' if remainder < 100
